@@ -19,13 +19,9 @@ class MainActivity : AppCompatActivity() {
         val string: String? = intent.getStringExtra(AppConstants.stringObject)
         val int: Int = intent.getIntExtra(AppConstants.integerObject, 0)
 
-        val textViewString = binding.tvStringMain
-        textViewString.text = "Values were passed from previous screen:$string"
-
-        val textViewInteger = binding.tvIntegerMain
-        textViewInteger.text = "Values were passed from previous screen:$int"
-
-        val button = binding.buttonToSecond
+        binding.tvStringMain.text = "Values were passed from previous screen:$string"
+        binding.tvIntegerMain.text = "Values were passed from previous screen:$int"
+        binding.buttonToSecond
             .setOnClickListener { dataToSecondActivity() }
     }
 

@@ -21,14 +21,9 @@ class SecondActivity : AppCompatActivity() {
         val string: String? = intent.getStringExtra(AppConstants.stringObject)
         val int: Int = intent.getIntExtra(AppConstants.integerObject, 0)
 
-        val textViewString = binding.tvString
-        textViewString.text = "Values were passed from previous screen:$string"
-
-        val textViewInteger = binding.tvInteger
-        textViewInteger.text = "Values were passed from previous screen:$int"
-
-        val button = binding.buttonToMain.
-            setOnClickListener { dataToMainActivity() }
+        binding.tvString.text = "Values were passed from previous screen:$string"
+        binding.tvInteger.text = "Values were passed from previous screen:$int"
+        binding.buttonToMain.setOnClickListener { dataToMainActivity() }
     }
 
     private fun dataToMainActivity() {
@@ -39,6 +34,6 @@ class SecondActivity : AppCompatActivity() {
         intent.putExtra(AppConstants.integerObject, integerToPass)
         val options: ActivityOptionsCompat = ActivityOptionsCompat
             .makeSceneTransitionAnimation(this, binding.imvShared, "Image")
-        startActivity(intent,options.toBundle())
+        startActivity(intent, options.toBundle())
     }
 }
