@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.app.ActivityOptionsCompat
 import com.shevchenkovtwo.homework.databinding.ActivitySecondBinding
-import javax.xml.xpath.XPathConstants.STRING
+
 
 class SecondActivity : AppCompatActivity() {
 
@@ -17,19 +17,18 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySecondBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
         val string: String? = intent.getStringExtra(AppConstants.stringObject)
         val int: Int = intent.getIntExtra(AppConstants.integerObject, 0)
 
-        val textViewString = binding.tvString.let {
-            it.text = "Values were passed from previous screen:$string"
-        }
-        val textViewInteger = binding.tvInteger.let {
-            it.text = "Values were passed from previous screen:$int"
-        }
+        val textViewString = binding.tvString
+        textViewString.text = "Values were passed from previous screen:$string"
 
-        val button = binding.buttonToMain.let {
-            it.setOnClickListener { dataToMainActivity() }
-        }
+        val textViewInteger = binding.tvInteger
+        textViewInteger.text = "Values were passed from previous screen:$int"
+
+        val button = binding.buttonToMain.
+            setOnClickListener { dataToMainActivity() }
     }
 
     private fun dataToMainActivity() {
