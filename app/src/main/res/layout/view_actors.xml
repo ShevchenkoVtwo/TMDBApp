@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/movie_background">
+
+    <ImageView
+        android:id="@+id/imActor1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/robert"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imActor2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/chrisevans"
+        app:layout_constraintStart_toEndOf="@+id/imActor1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imActor3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/mark"
+        app:layout_constraintStart_toEndOf="@+id/imActor2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imActor4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:src="@drawable/chrishemsworth"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imActor3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txActor1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Robert Downey Jr."
+        android:textColor="@color/title_color"
+        app:layout_constraintEnd_toEndOf="@+id/imActor1"
+        app:layout_constraintStart_toStartOf="@+id/imActor1"
+        app:layout_constraintTop_toBottomOf="@+id/imActor1" />
+
+    <TextView
+        android:id="@+id/txActor2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Chris
+                Evans"
+        android:textColor="@color/title_color"
+        app:layout_constraintEnd_toEndOf="@+id/imActor2"
+        app:layout_constraintStart_toStartOf="@+id/imActor2"
+        app:layout_constraintTop_toBottomOf="@+id/imActor2" />
+
+    <TextView
+        android:id="@+id/txActor3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Mark
+                Ruffalo"
+        android:textColor="@color/title_color"
+        app:layout_constraintEnd_toEndOf="@+id/imActor3"
+        app:layout_constraintStart_toStartOf="@+id/imActor3"
+        app:layout_constraintTop_toBottomOf="@+id/imActor3" />
+
+    <TextView
+        android:id="@+id/txActor4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_medium"
+        android:text="Chris Hemsworth"
+        android:textColor="@color/title_color"
+        app:layout_constraintEnd_toEndOf="@+id/imActor4"
+        app:layout_constraintStart_toStartOf="@+id/imActor4"
+        app:layout_constraintTop_toBottomOf="@+id/imActor4" />
+</androidx.constraintlayout.widget.ConstraintLayout>
