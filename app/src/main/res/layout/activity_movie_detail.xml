@@ -21,7 +21,7 @@
             <ImageView
                 android:id="@+id/im_title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:scaleType="fitXY"
                 app:srcCompat="@drawable/mask" />
 

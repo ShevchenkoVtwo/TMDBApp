@@ -7,6 +7,4 @@
         android:startColor="@color/movie_background"
          />
 
-    <corners android:radius="35dp" />
-
 </shape>
