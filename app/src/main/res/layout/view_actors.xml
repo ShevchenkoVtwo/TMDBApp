@@ -6,7 +6,7 @@
     android:background="@color/movie_background">
 
     <ImageView
-        android:id="@+id/imActor1"
+        android:id="@+id/im_robert"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/robert"
@@ -14,81 +14,81 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imActor2"
+        android:id="@+id/im_chris_evans"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/actors_margin"
         android:src="@drawable/chrisevans"
-        app:layout_constraintStart_toEndOf="@+id/imActor1"
+        app:layout_constraintStart_toEndOf="@+id/im_robert"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imActor3"
+        android:id="@+id/im_mark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/actors_margin"
         android:src="@drawable/mark"
-        app:layout_constraintStart_toEndOf="@+id/imActor2"
+        app:layout_constraintStart_toEndOf="@+id/im_chris_evans"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/imActor4"
+        android:id="@+id/im_chris_hemsworth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
+        android:layout_marginStart="@dimen/actors_margin"
         android:src="@drawable/chrishemsworth"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/imActor3"
+        app:layout_constraintStart_toEndOf="@+id/im_mark"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/txActor1"
+        android:id="@+id/tx_robert"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/actors_margin"
         android:fontFamily="@font/roboto_medium"
         android:text="Robert Downey Jr."
         android:textColor="@color/title_color"
-        app:layout_constraintEnd_toEndOf="@+id/imActor1"
-        app:layout_constraintStart_toStartOf="@+id/imActor1"
-        app:layout_constraintTop_toBottomOf="@+id/imActor1" />
+        app:layout_constraintEnd_toEndOf="@+id/im_robert"
+        app:layout_constraintStart_toStartOf="@+id/im_robert"
+        app:layout_constraintTop_toBottomOf="@+id/im_robert" />
 
     <TextView
-        android:id="@+id/txActor2"
+        android:id="@+id/tx_chris_evans"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/actors_margin"
         android:fontFamily="@font/roboto_medium"
         android:text="Chris
                 Evans"
         android:textColor="@color/title_color"
-        app:layout_constraintEnd_toEndOf="@+id/imActor2"
-        app:layout_constraintStart_toStartOf="@+id/imActor2"
-        app:layout_constraintTop_toBottomOf="@+id/imActor2" />
+        app:layout_constraintEnd_toEndOf="@+id/im_chris_evans"
+        app:layout_constraintStart_toStartOf="@+id/im_chris_evans"
+        app:layout_constraintTop_toBottomOf="@+id/im_chris_evans" />
 
     <TextView
-        android:id="@+id/txActor3"
+        android:id="@+id/tx_mark"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/actors_margin"
         android:fontFamily="@font/roboto_medium"
         android:text="Mark
                 Ruffalo"
         android:textColor="@color/title_color"
-        app:layout_constraintEnd_toEndOf="@+id/imActor3"
-        app:layout_constraintStart_toStartOf="@+id/imActor3"
-        app:layout_constraintTop_toBottomOf="@+id/imActor3" />
+        app:layout_constraintEnd_toEndOf="@+id/im_mark"
+        app:layout_constraintStart_toStartOf="@+id/im_mark"
+        app:layout_constraintTop_toBottomOf="@+id/im_mark" />
 
     <TextView
-        android:id="@+id/txActor4"
+        android:id="@+id/tx_chris_hemsworth"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="@dimen/actors_margin"
         android:fontFamily="@font/roboto_medium"
         android:text="Chris Hemsworth"
         android:textColor="@color/title_color"
-        app:layout_constraintEnd_toEndOf="@+id/imActor4"
-        app:layout_constraintStart_toStartOf="@+id/imActor4"
-        app:layout_constraintTop_toBottomOf="@+id/imActor4" />
+        app:layout_constraintEnd_toEndOf="@+id/im_chris_hemsworth"
+        app:layout_constraintStart_toStartOf="@+id/im_chris_hemsworth"
+        app:layout_constraintTop_toBottomOf="@+id/im_chris_hemsworth" />
 </androidx.constraintlayout.widget.ConstraintLayout>
