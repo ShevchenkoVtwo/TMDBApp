@@ -1,5 +1,4 @@
 <resources>
-    <dimen name="actors_margin">8dp</dimen>
     <dimen name="views_margin_16">16dp</dimen>
     <dimen name="views_margin_8">8dp</dimen>
     <dimen name="text_storyline_padding">4dp</dimen>

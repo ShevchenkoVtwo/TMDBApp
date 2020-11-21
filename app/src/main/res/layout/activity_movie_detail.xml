@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/movie_background">
@@ -9,52 +10,32 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <FrameLayout
-            android:id="@+id/mask"
+        <ImageView
+            android:id="@+id/im_title"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:scaleType="fitXY"
+            android:background="@drawable/mask"
             app:layout_constraintBottom_toBottomOf="@+id/tx_movie_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <ImageView
-                android:id="@+id/im_title"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:scaleType="fitXY"
-                app:srcCompat="@drawable/mask" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@drawable/gradient" />
-
-        </FrameLayout>
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/gradient" />
 
         <TextView
             android:id="@+id/tx_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/views_margin_8"
+            android:layout_marginStart="@dimen/views_margin_16"
+            android:layout_marginTop="60dp"
             android:fontFamily="@font/roboto"
+            android:gravity="center"
             android:text="@string/image_back"
             android:textColor="@color/arrow_color"
             android:textSize="12sp"
-            app:layout_constraintBottom_toBottomOf="@+id/im_back"
-            app:layout_constraintStart_toEndOf="@+id/im_back"
-            app:layout_constraintTop_toTopOf="@+id/im_back" />
-
-        <ImageView
-            android:id="@+id/im_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/views_margin_16"
-            android:layout_marginTop="60dp"
-            android:scaleType="fitXY"
+            app:drawableStartCompat="@drawable/ic_arrow_back"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/ic_arrow_back" />
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tx_pg"
