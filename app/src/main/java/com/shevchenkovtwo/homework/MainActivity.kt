@@ -2,15 +2,20 @@ package com.shevchenkovtwo.homework
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.shevchenkovtwo.homework.databinding.ActivityMovieDetailBinding
+import androidx.navigation.fragment.NavHostFragment
+import com.shevchenkovtwo.homework.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityMovieDetailBinding
+    lateinit var mainActivityBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMovieDetailBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        mainActivityBinding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(mainActivityBinding.root)
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(mainActivityBinding.container.id) as NavHostFragment
+        val navController = navHostFragment.navController
     }
+
 }
