@@ -11,22 +11,25 @@ import com.shevchenkovtwo.homework.databinding.FragmentMoviesListBinding
 
 class MoviesListFragment : Fragment() {
 
-    private lateinit var fragmentMoviesListBinding: FragmentMoviesListBinding
+    private var fragmentMoviesListBinding: FragmentMoviesListBinding? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentMoviesListBinding.inflate(inflater, container, false)
         fragmentMoviesListBinding = binding
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        fragmentMoviesListBinding.movieLayout.root.setOnClickListener {
-            it.findNavController().navigate(R.id.movieDetailFragment)
+        fragmentMoviesListBinding?.let { it ->
+            it.movieLayout.root.setOnClickListener { view ->
+                view.findNavController().navigate(R.id.movieDetailFragment)
+            }
         }
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onDestroyView() {
+        fragmentMoviesListBinding = null
+        super.onDestroyView()
+    }
 }

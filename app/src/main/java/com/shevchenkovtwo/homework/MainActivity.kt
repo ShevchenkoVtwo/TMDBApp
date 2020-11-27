@@ -7,7 +7,8 @@ import com.shevchenkovtwo.homework.databinding.ActivityMainBinding
 
 
 class MainActivity : AppCompatActivity() {
-    lateinit var mainActivityBinding: ActivityMainBinding
+
+    private lateinit var mainActivityBinding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

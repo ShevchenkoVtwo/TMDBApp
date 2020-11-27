@@ -13,10 +13,7 @@ class MovieDetailFragment : Fragment() {
 
     private var fragmentMovieDetailBinding: FragmentMovieDetailBinding? = null
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
         fragmentMovieDetailBinding = binding
         return binding.root
@@ -29,4 +26,8 @@ class MovieDetailFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onDestroyView() {
+        fragmentMovieDetailBinding = null
+        super.onDestroyView()
+    }
 }
