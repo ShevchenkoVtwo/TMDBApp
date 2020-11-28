@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/movie_background"
+    tools:context=".MoviesListFragment">
+
+    <TextView
+        android:id="@+id/movie_list"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:drawablePadding="@dimen/views_margin_8"
+        android:fontFamily="@font/roboto"
+        android:paddingStart="@dimen/views_margin_16"
+        android:paddingEnd="@dimen/views_margin_16"
+        android:paddingTop="@dimen/views_padding_4"
+        android:paddingBottom="@dimen/views_padding_4"
+        android:text="@string/movies_list"
+        android:textColor="@color/title_color"
+        app:drawableStartCompat="@drawable/ic_my_location"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <include
+        android:id="@+id/movie_layout"
+        layout="@layout/list_view_movie_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="18dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/movie_list" />
+</androidx.constraintlayout.widget.ConstraintLayout>

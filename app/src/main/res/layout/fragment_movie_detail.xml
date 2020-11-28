@@ -10,20 +10,20 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/im_title"
+            android:id="@+id/mask"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:background="@drawable/mask"
             android:contentDescription="@string/movie_mask"
             android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="@+id/tx_movie_name"
+            app:layout_constraintBottom_toBottomOf="@+id/movie_name"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/gradient" />
 
         <TextView
-            android:id="@+id/tx_back"
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/views_margin_16"
@@ -38,20 +38,23 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tx_pg"
+            android:id="@+id/pg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/views_margin_16"
             android:layout_marginTop="225dp"
+            android:background="@drawable/rounded_rectangle"
             android:fontFamily="@font/roboto"
+            android:padding="@dimen/views_margin_4"
             android:text="@string/pg"
             android:textColor="@color/title_color"
             android:textSize="12sp"
+            android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tx_movie_name"
+            android:id="@+id/movie_name"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
@@ -62,11 +65,11 @@
             android:textSize="40sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/tx_pg"
-            app:layout_constraintTop_toBottomOf="@+id/tx_pg" />
+            app:layout_constraintStart_toStartOf="@+id/pg"
+            app:layout_constraintTop_toBottomOf="@+id/pg" />
 
         <TextView
-            android:id="@+id/tx_tag"
+            android:id="@+id/tag"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/views_margin_16"
@@ -77,7 +80,7 @@
             android:textColor="@color/tag_text_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tx_movie_name" />
+            app:layout_constraintTop_toBottomOf="@+id/movie_name" />
 
         <RatingBar
             android:id="@+id/movie_rating"
@@ -90,73 +93,74 @@
             android:progressTint="@color/tag_text_color"
             android:rating="4"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tx_tag" />
+            app:layout_constraintTop_toBottomOf="@+id/tag" />
 
         <TextView
-            android:id="@+id/tx_reviews"
+            android:id="@+id/reviews"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/views_margin_8"
             android:fontFamily="@font/roboto"
             android:text="@string/reviews"
+            android:textAllCaps="true"
             android:textColor="@color/arrow_color"
             app:layout_constraintBottom_toBottomOf="@+id/movie_rating"
             app:layout_constraintStart_toEndOf="@+id/movie_rating"
             app:layout_constraintTop_toTopOf="@+id/movie_rating" />
 
         <TextView
-            android:id="@+id/tx_storyline"
+            android:id="@+id/storyline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/views_margin_16"
             android:layout_marginTop="24dp"
             android:layout_marginEnd="@dimen/views_margin_16"
             android:fontFamily="@font/roboto_medium"
-            android:paddingTop="@dimen/text_storyline_padding"
-            android:paddingBottom="@dimen/text_storyline_padding"
+            android:paddingTop="@dimen/views_padding_4"
+            android:paddingBottom="@dimen/views_padding_4"
             android:text="@string/storyline"
             android:textColor="@color/title_color"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/tx_movie_description"
+            app:layout_constraintBottom_toTopOf="@+id/movie_description"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tx_reviews" />
+            app:layout_constraintTop_toBottomOf="@+id/reviews" />
 
         <TextView
-            android:id="@+id/tx_movie_description"
+            android:id="@+id/movie_description"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/views_margin_16"
             android:layout_marginEnd="@dimen/views_margin_16"
             android:alpha=".75"
             android:fontFamily="@font/roboto"
-            android:paddingTop="@dimen/text_description_padding"
-            android:paddingBottom="@dimen/text_description_padding"
+            android:paddingTop="@dimen/views_padding_20"
+            android:paddingBottom="@dimen/views_padding_20"
             android:text="@string/movie_description"
             android:textAlignment="textStart"
             android:textColor="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/tx_cast"
+            app:layout_constraintBottom_toTopOf="@+id/cast"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tx_storyline" />
+            app:layout_constraintTop_toBottomOf="@+id/storyline" />
 
         <TextView
-            android:id="@+id/tx_cast"
+            android:id="@+id/cast"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/views_margin_16"
             android:layout_marginEnd="@dimen/views_margin_16"
             android:fontFamily="@font/roboto_medium"
-            android:paddingTop="@dimen/text_cast_padding"
-            android:paddingBottom="@dimen/text_cast_padding"
+            android:paddingTop="@dimen/views_padding_8"
+            android:paddingBottom="@dimen/views_padding_8"
             android:text="@string/cast"
             android:textColor="@color/title_color"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tx_movie_description" />
+            app:layout_constraintTop_toBottomOf="@+id/movie_description" />
 
         <HorizontalScrollView
             android:layout_width="wrap_content"
@@ -169,7 +173,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tx_cast">
+            app:layout_constraintTop_toBottomOf="@+id/cast">
 
             <include
                 layout="@layout/view_actors"

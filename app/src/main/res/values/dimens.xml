@@ -1,7 +1,8 @@
 <resources>
     <dimen name="views_margin_16">16dp</dimen>
     <dimen name="views_margin_8">8dp</dimen>
-    <dimen name="text_storyline_padding">4dp</dimen>
-    <dimen name="text_description_padding">20dp</dimen>
-    <dimen name="text_cast_padding">8dp</dimen>
+    <dimen name="views_margin_4">4dp</dimen>
+    <dimen name="views_padding_4">4dp</dimen>
+    <dimen name="views_padding_20">20dp</dimen>
+    <dimen name="views_padding_8">8dp</dimen>
 </resources>

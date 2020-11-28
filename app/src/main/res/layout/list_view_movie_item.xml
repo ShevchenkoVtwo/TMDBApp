@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/movie_item"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="5dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/movie_background">
+
+        <ImageView
+            android:id="@+id/movie_mask"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/movie"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/gradient" />
+
+        <ImageView
+            android:id="@+id/favourite"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="6dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_favorite" />
+
+        <TextView
+            android:id="@+id/pg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/rounded_rectangle"
+            android:fontFamily="@font/roboto"
+            android:padding="@dimen/views_margin_4"
+            android:paddingTop="@dimen/views_margin_4"
+            android:paddingBottom="@dimen/views_margin_4"
+            android:text="@string/pg"
+            android:textColor="@color/title_color"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/reviews"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/views_margin_4"
+            android:fontFamily="@font/roboto"
+            android:text="@string/reviews"
+            android:textAllCaps="true"
+            android:textColor="@color/arrow_color"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@+id/movie_rating"
+            app:layout_constraintStart_toEndOf="@+id/movie_rating"
+            app:layout_constraintTop_toTopOf="@+id/movie_rating"
+            tools:ignore="SmallSp" />
+
+        <TextView
+            android:id="@+id/tag"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="22dp"
+            android:layout_marginBottom="14dp"
+            android:fontFamily="@font/roboto"
+            android:text="@string/tags"
+            android:textColor="@color/tag_text_color"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="@+id/movie_mask"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SmallSp" />
+
+        <RatingBar
+            android:id="@+id/movie_rating"
+            style="@style/myRatingBar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/views_margin_4"
+            android:numStars="5"
+            android:rating="4"
+            app:layout_constraintStart_toStartOf="@+id/tag"
+            app:layout_constraintTop_toBottomOf="@+id/tag" />
+
+        <TextView
+            android:id="@+id/movie_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/views_margin_8"
+            android:layout_marginTop="@dimen/views_margin_8"
+            android:layout_marginEnd="@dimen/views_margin_8"
+            android:layout_marginBottom="20dp"
+            android:fontFamily="@font/roboto"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+            android:text="@string/movie_title"
+            android:textColor="@color/title_color"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_mask" />
+
+        <TextView
+            android:id="@+id/duration"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/views_margin_8"
+            android:layout_marginEnd="@dimen/views_margin_8"
+            android:layout_marginBottom="@dimen/views_margin_8"
+            android:fontFamily="@font/roboto"
+            android:text="@string/duration"
+            android:textAllCaps="true"
+            android:textColor="@color/arrow_color"
+            android:textSize="8sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/movie_title"
+            tools:ignore="SmallSp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>
