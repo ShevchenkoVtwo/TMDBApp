@@ -19,11 +19,7 @@ class MovieDetailFragment : Fragment() {
     private var fragmentMovieDetailBinding: FragmentMovieDetailBinding? = null
     private lateinit var recyclerView: RecyclerView
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
         fragmentMovieDetailBinding = binding
         return binding.root
@@ -54,11 +50,7 @@ class MovieDetailFragment : Fragment() {
                 }
             }
         }
-        Snackbar.make(
-            view,
-            "If you see not full info about movie, it will be updated soon!",
-            Snackbar.LENGTH_LONG
-        )
+        Snackbar.make(view, "If you see not full info about movie, it will be updated soon!", Snackbar.LENGTH_LONG)
             .setTextColor(ContextCompat.getColor(requireContext(), R.color.title_color))
             .show()
         super.onViewCreated(view, savedInstanceState)

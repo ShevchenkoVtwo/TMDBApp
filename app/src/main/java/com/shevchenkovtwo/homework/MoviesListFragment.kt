@@ -17,11 +17,7 @@ class MoviesListFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private var spanCount: Int = 2
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentMoviesListBinding.inflate(inflater, container, false)
         fragmentMoviesListBinding = binding
         spanCount = if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
