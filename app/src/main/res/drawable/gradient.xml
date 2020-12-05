@@ -5,8 +5,8 @@
     <gradient
         android:angle="90"
         android:centerColor="@color/movie_background"
-        android:centerX="0.1"
-        android:centerY="0.1"
+        android:centerX="0.11"
+        android:centerY="0.11"
         android:startColor="@color/movie_background" />
 
 </shape>
