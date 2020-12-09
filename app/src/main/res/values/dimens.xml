@@ -1,7 +1,10 @@
 <resources>
+    <dimen name="items_separator">12dp</dimen>
     <dimen name="views_margin_16">16dp</dimen>
     <dimen name="views_margin_8">8dp</dimen>
     <dimen name="views_margin_4">4dp</dimen>
+    <dimen name="views_margin_2">2dp</dimen>
+    <dimen name="views_padding_2">2dp</dimen>
     <dimen name="views_padding_4">4dp</dimen>
     <dimen name="views_padding_20">20dp</dimen>
     <dimen name="views_padding_8">8dp</dimen>
