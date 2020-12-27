@@ -4,13 +4,13 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/views_margin_4"
-    android:background="@color/movie_background">
+    android:background="@color/app_background">
 
     <ImageView
         android:id="@+id/actor"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:scaleType="fitXY"
+        android:scaleType="centerCrop"
         android:src="@drawable/robert"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"

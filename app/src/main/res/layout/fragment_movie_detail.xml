@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/movie_background">
+    android:background="@color/app_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -16,8 +16,8 @@
             android:layout_height="0dp"
             android:contentDescription="@string/movie_mask"
             android:foreground="@drawable/gradient"
-            android:scaleType="fitXY"
-            app:layout_constraintBottom_toBottomOf="@+id/movie_name"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toTopOf="@+id/tag"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -43,7 +43,7 @@
             android:fontFamily="@font/roboto"
             android:gravity="center"
             android:text="@string/image_back"
-            android:textColor="@color/arrow_color"
+            android:textColor="@color/icons_color"
             android:textSize="12sp"
             app:drawableStartCompat="@drawable/ic_arrow_back"
             app:layout_constraintStart_toStartOf="parent"
@@ -88,7 +88,7 @@
             android:layout_marginTop="@dimen/views_margin_8"
             android:layout_marginEnd="@dimen/views_margin_16"
             android:fontFamily="@font/roboto"
-            android:textColor="@color/tag_text_color"
+            android:textColor="@color/highlighted_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/movie_name"
@@ -101,8 +101,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/views_margin_16"
             android:layout_marginTop="@dimen/views_margin_8"
-            android:progressBackgroundTint="@color/arrow_color"
-            android:progressTint="@color/tag_text_color"
+            android:progressBackgroundTint="@color/icons_color"
+            android:progressTint="@color/highlighted_color"
             android:rating="4"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tag" />
@@ -114,7 +114,7 @@
             android:layout_marginStart="@dimen/views_margin_8"
             android:fontFamily="@font/roboto"
             android:textAllCaps="true"
-            android:textColor="@color/arrow_color"
+            android:textColor="@color/icons_color"
             app:layout_constraintBottom_toBottomOf="@+id/movie_rating"
             app:layout_constraintStart_toEndOf="@+id/movie_rating"
             app:layout_constraintTop_toTopOf="@+id/movie_rating"
