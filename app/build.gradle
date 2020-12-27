@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'org.jetbrains.kotlin.plugin.serialization'
+    id 'kotlin-parcelize'
 }
 
 android {
@@ -38,6 +39,7 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     def junit_version = "4.13.1"
     def junit_test_version = "1.1.2"
     def espresso_version = "3.3.0"
