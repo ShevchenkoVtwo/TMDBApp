@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/moviesListFragment">
+    <fragment
+        android:id="@+id/moviesListFragment"
+        android:name="com.shevchenkovtwo.homework.ui.fragments.MoviesListFragment"
+        android:label="fragment_movies_list"
+        tools:layout="@layout/fragment_movies_list">
+        <action
+            android:id="@+id/action_fragmentMoviesList_to_movieDetailFragment"
+            app:destination="@id/movieDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/movieDetailFragment"
+        android:name="com.shevchenkovtwo.homework.ui.fragments.MovieDetailFragment"
+        android:label="movie_detail_fragment"
+        tools:layout="@layout/fragment_movie_detail" />
+    <fragment
+        android:id="@+id/ticketFragment"
+        android:name="com.shevchenkovtwo.homework.ui.fragments.TicketFragment"
+        android:label="Tickets"
+        tools:layout="@layout/fragment_ticket" />
+    <fragment
+        android:id="@+id/cinemasFragment"
+        android:name="com.shevchenkovtwo.homework.ui.fragments.CinemasFragment"
+        android:label="Cinemas"
+        tools:layout="@layout/fragment_cinemas" />
+    <fragment
+        android:id="@+id/favouriteFragment"
+        android:name="com.shevchenkovtwo.homework.ui.fragments.FavouriteFragment"
+        android:label="Favourite"
+        tools:layout="@layout/fragment_favourite" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.shevchenkovtwo.homework.ui.fragments.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
