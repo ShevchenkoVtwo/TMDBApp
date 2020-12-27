@@ -1,4 +1,4 @@
-package com.shevchenkovtwo.homework
+package com.shevchenkovtwo.homework.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -1,11 +1,13 @@
-package com.shevchenkovtwo.homework
+package com.shevchenkovtwo.homework.ui.adapters
 
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
+import com.shevchenkovtwo.homework.R
 import com.shevchenkovtwo.homework.data.Movie
 import com.shevchenkovtwo.homework.databinding.ListViewMovieItemBinding
 
@@ -17,10 +19,12 @@ class MoviesAdapter(private var movies: List<Movie>) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
             binding.movieLayout.movieTitle.text = movie.title
-            binding.movieLayout.pg.text = setPGText(movie.minimumAge)
-            binding.movieLayout.movieRating.rating = calculateMovieRating(movie.ratings)
-            binding.movieLayout.reviews.text = setReviewsText(movie.numberOfRatings)
-            binding.movieLayout.duration.text = setDurationText(movie.runtime)
+            binding.movieLayout.pg.text = itemView.context.getString(R.string.pg, movie.minimumAge)
+            binding.movieLayout.movieRating.rating = movie.ratings.calculateMovieRating()
+            binding.movieLayout.reviews.text =
+                itemView.context.getString(R.string.reviews, movie.numberOfRatings)
+            binding.movieLayout.duration.text =
+                itemView.context.getString(R.string.duration, movie.runtime)
             binding.movieLayout.tag.text = movie.genres.joinToString { it.name }
             binding.movieLayout.movieBackground.load(movie.poster)
             //TODO Add placeholders for empty images when will be added retrofit
@@ -35,9 +39,10 @@ class MoviesAdapter(private var movies: List<Movie>) :
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
         holder.bind(movies[position])
+        val bundle = bundleOf(selectedMovie to movies[position])
         holder.itemView.setOnClickListener {
-            selectedMovie = movies[position]
-            it.findNavController().navigate(R.id.action_fragmentMoviesList_to_movieDetailFragment)
+            it.findNavController()
+                .navigate(R.id.action_fragmentMoviesList_to_movieDetailFragment, bundle)
         }
     }
 
@@ -45,12 +50,9 @@ class MoviesAdapter(private var movies: List<Movie>) :
         return movies.size
     }
 
-    companion object Constants {
-        var selectedMovie: Movie? = null
+    companion object {
+        const val selectedMovie = "SELECTED_MOVIE"
     }
 }
 
-fun calculateMovieRating(movieRating: Float) = movieRating / 2
-fun setPGText(pg: Int): String = "$pg +"
-fun setReviewsText(reviews: Int): String = "$reviews reviews"
-fun setDurationText(duration: Int): String = "$duration min"
+fun Float.calculateMovieRating(): Float = this / 2
