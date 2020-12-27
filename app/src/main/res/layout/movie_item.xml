@@ -2,7 +2,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/movie_item"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/views_margin_2"
@@ -10,24 +9,26 @@
 
     <ImageView
         android:id="@+id/movie_background"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="@dimen/movie_poster_width"
+        android:layout_height="@dimen/movie_poster_height"
+        android:contentDescription="@string/movie_poster"
         android:foreground="@drawable/gradient"
         android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/avengers" />
+        tools:srcCompat="@drawable/avengers" />
 
     <ImageView
         android:id="@+id/favourite"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/views_margin_8"
         android:layout_marginEnd="@dimen/views_margin_8"
-        app:layout_constraintBottom_toBottomOf="@+id/pg"
-        app:layout_constraintEnd_toEndOf="@+id/movie_background"
-        app:layout_constraintTop_toTopOf="@+id/pg"
-        app:srcCompat="@drawable/ic_not_favorite" />
+        android:contentDescription="@string/is_movie_favourite"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@drawable/ic_not_favorite" />
 
     <TextView
         android:id="@+id/pg"
@@ -44,13 +45,14 @@
         android:textColor="@color/title_color"
         android:textSize="12sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="@+id/movie_background"
-        app:layout_constraintTop_toTopOf="@+id/movie_background" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/reviews"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
         android:fontFamily="@font/roboto"
         android:text="@string/reviews"
         android:textAllCaps="true"
@@ -63,16 +65,20 @@
 
     <TextView
         android:id="@+id/tag"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/views_margin_8"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="22dp"
         android:fontFamily="@font/roboto"
+        android:singleLine="true"
         android:text="@string/tags"
         android:textColor="@color/tag_text_color"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="@+id/movie_background"
-        app:layout_constraintStart_toStartOf="@+id/movie_background"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
         tools:ignore="SmallSp" />
 
     <RatingBar
@@ -85,8 +91,7 @@
         android:layout_marginBottom="@dimen/views_margin_8"
         android:numStars="5"
         android:rating="4"
-        app:layout_constraintBottom_toBottomOf="@+id/movie_background"
-        app:layout_constraintStart_toStartOf="@+id/movie_background"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tag" />
 
     <TextView
@@ -99,9 +104,11 @@
         android:fontFamily="@font/roboto"
         android:paddingTop="5dp"
         android:paddingBottom="5dp"
+        android:singleLine="true"
         android:text="@string/movie_title"
         android:textColor="@color/title_color"
         android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/duration"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/movie_background" />
@@ -110,17 +117,15 @@
         android:id="@+id/duration"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/views_margin_8"
-        android:layout_marginEnd="@dimen/views_margin_8"
-        android:layout_marginBottom="@dimen/views_margin_8"
+        android:layout_marginBottom="8dp"
         android:fontFamily="@font/roboto"
         android:text="@string/duration"
         android:textAllCaps="true"
         android:textColor="@color/arrow_color"
         android:textSize="8sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/movie_title"
+        app:layout_constraintStart_toStartOf="@+id/movie_title"
         app:layout_constraintTop_toBottomOf="@+id/movie_title"
         tools:ignore="SmallSp" />
 

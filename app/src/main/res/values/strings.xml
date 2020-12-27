@@ -4,16 +4,17 @@
     <string name="storyline">Storyline</string>
     <string name="cast">Cast</string>
     <string name="tags">Action, Adventure, Fantasy</string>
-    <string name="reviews">125 reviews</string>
+    <string name="reviews">reviews</string>
     <string name="movie_description">After the devastating events of Avengers: Infinity War, the universe is in ruins. With the help of remaining allies, the Avengers assemble once more in order to reverse Thanos\' actions and restore balance to the universe.</string>
-    <string name="mark_ruffalo">Mark Ruffalo</string>
-    <string name="chris_hemsworth">Chris Hemsworth</string>
-    <string name="chris_evans">Chris Evans</string>
     <string name="robert_downey_jr">Robert Downey Jr.</string>
     <string name="movie_title">Avengers: End Game</string>
-    <string name="pg">13 +</string>
+    <string name="pg">age</string>
     <string name="movie_mask">Movie mask</string>
-    <string name="duration">137 min</string>
+    <string name="duration">min</string>
     <string name="movies_list">Movies list</string>
-    <string name="favourite">favourite icone</string>
+    <string name="favourite">favourite icon</string>
+    <string name="movie_poster">movie poster</string>
+    <string name="is_movie_favourite">is movie favourite</string>
+    <string name="error_message">If you see not full info about movie, it will be updated soon!</string>
+    <string name="actor_photo">actor photo</string>
 </resources>

@@ -8,12 +8,13 @@
 
     <ImageView
         android:id="@+id/actor"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:scaleType="fitXY"
         android:src="@drawable/robert"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:contentDescription="@string/actor_photo" />
 
     <TextView
         android:id="@+id/actor_name"

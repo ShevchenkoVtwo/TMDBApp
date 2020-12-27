@@ -5,7 +5,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.shevchenkovtwo.homework.AppConstants.selectedMovie
+import coil.load
+import com.shevchenkovtwo.homework.data.Movie
 import com.shevchenkovtwo.homework.databinding.ListViewMovieItemBinding
 
 
@@ -15,17 +16,14 @@ class MoviesAdapter(private var movies: List<Movie>) :
     class MovieViewHolder(private val binding: ListViewMovieItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(movie: Movie) {
-            binding.movieLayout.movieTitle.text = movie.name
-            binding.movieLayout.duration.text = movie.duration
-            binding.movieLayout.pg.text = movie.pg
-            binding.movieLayout.movieRating.rating = movie.rating
-            binding.movieLayout.reviews.text = movie.reviews
-            binding.movieLayout.tag.text = movie.tags
-            if (movie.favorite) {
-                binding.movieLayout.favourite.setImageResource(R.drawable.ic_favorite)
-            } else
-                binding.movieLayout.favourite.setImageResource(R.drawable.ic_not_favorite)
-            binding.movieLayout.movieBackground.setImageResource(movie.imageForList)
+            binding.movieLayout.movieTitle.text = movie.title
+            binding.movieLayout.pg.text = setPGText(movie.minimumAge)
+            binding.movieLayout.movieRating.rating = calculateMovieRating(movie.ratings)
+            binding.movieLayout.reviews.text = setReviewsText(movie.numberOfRatings)
+            binding.movieLayout.duration.text = setDurationText(movie.runtime)
+            binding.movieLayout.tag.text = movie.genres.joinToString { it.name }
+            binding.movieLayout.movieBackground.load(movie.poster)
+            //TODO Add placeholders for empty images when will be added retrofit
         }
     }
 
@@ -46,4 +44,13 @@ class MoviesAdapter(private var movies: List<Movie>) :
     override fun getItemCount(): Int {
         return movies.size
     }
+
+    companion object Constants {
+        var selectedMovie: Movie? = null
+    }
 }
+
+fun calculateMovieRating(movieRating: Float) = movieRating / 2
+fun setPGText(pg: Int): String = "$pg +"
+fun setReviewsText(reviews: Int): String = "$reviews reviews"
+fun setDurationText(duration: Int): String = "$duration min"
