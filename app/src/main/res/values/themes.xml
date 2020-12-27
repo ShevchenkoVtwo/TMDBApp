@@ -19,6 +19,12 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <style name="BottomNavigationViewText" parent="TextAppearance.AppCompat">
+        <item name="font">@font/roboto</item>
+        <item name="textAllCaps">true</item>
+        <item name="android:textSize">@dimen/views_margin_8</item>
+    </style>
+
     <style name="myRatingBar" parent="Widget.AppCompat.RatingBar">
         <item name="android:progressDrawable">@drawable/small_rating_bar</item>
         <item name="android:stepSize">1</item>
