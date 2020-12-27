@@ -1,4 +1,4 @@
-package com.shevchenkovtwo.homework
+package com.shevchenkovtwo.homework.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,6 +7,7 @@ import coil.load
 import com.shevchenkovtwo.homework.data.Actor
 import com.shevchenkovtwo.homework.databinding.ListViewActorItemBinding
 
+
 class ActorsAdapter(private var actors: List<Actor>) :
     RecyclerView.Adapter<ActorsAdapter.ActorsViewHolder>() {
     class ActorsViewHolder(private val binding: ListViewActorItemBinding) :
@@ -14,7 +15,7 @@ class ActorsAdapter(private var actors: List<Actor>) :
         fun bind(actor: Actor) {
             binding.actorName.text = actor.name
             binding.actor.load(actor.picture)
-        //TODO Add placeholders for empty images when will be added retrofit
+            //TODO Add placeholders for empty images when will be added retrofit
         }
     }
 
