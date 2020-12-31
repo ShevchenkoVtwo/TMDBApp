@@ -31,12 +31,12 @@ class MovieDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.movie.let{ movie ->
             initViews(movie)
             if (checkActorsList(movie))
                 Snackbar.make(view, getString(R.string.error_message), Snackbar.LENGTH_SHORT).show()
         }
-        super.onViewCreated(view, savedInstanceState)
     }
 
     private fun initViews(movie: Movie) {
