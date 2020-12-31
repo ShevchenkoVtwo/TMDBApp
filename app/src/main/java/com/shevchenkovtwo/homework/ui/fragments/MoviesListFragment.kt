@@ -29,28 +29,27 @@ class MoviesListFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        initViews(fragmentMoviesListBinding)
         super.onViewCreated(view, savedInstanceState)
+        initViews()
     }
 
-    private fun initViews(binding: FragmentMoviesListBinding?) {
+    private fun initViews() {
         moviesListMoviesViewModel.loadMoviesData()
         moviesListMoviesViewModel.moviesList.observe(viewLifecycleOwner) { movies ->
-            binding?.moviesList?.let {
-                it.adapter = MoviesAdapter(movies)
-                it.layoutManager =
+            fragmentMoviesListBinding?.moviesList?.let { recyclerView ->
+                recyclerView.adapter = MoviesAdapter(movies)
+                recyclerView.layoutManager =
                     GridLayoutManager(requireContext(), spanCount, RecyclerView.VERTICAL, false)
             }
         }
     }
-
 
     override fun onDestroyView() {
         fragmentMoviesListBinding = null
         super.onDestroyView()
     }
 
-    companion object  {
+    companion object {
         const val ORIENTATION_VERTICAL = 2
         const val ORIENTATION_HORIZONTAL = 4
     }

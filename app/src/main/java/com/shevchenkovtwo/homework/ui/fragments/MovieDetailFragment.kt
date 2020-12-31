@@ -31,18 +31,17 @@ class MovieDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        viewModel.loadSelectedMovie(arguments)
-        viewModel.movie.value?.let{
-            initViews(it, fragmentMovieDetailBinding)
-            navigateBack(fragmentMovieDetailBinding)
-            if (checkData(it))
+        arguments?.let { viewModel.loadSelectedMovie(it) }
+        viewModel.movie.value?.let{ movie ->
+            initViews(movie)
+            if (checkActorsList(movie))
                 Snackbar.make(view, getString(R.string.error_message), Snackbar.LENGTH_SHORT).show()
         }
         super.onViewCreated(view, savedInstanceState)
     }
 
-    private fun initViews(movie: Movie, binding: FragmentMovieDetailBinding?) {
-        binding?.apply {
+    private fun initViews(movie: Movie) {
+        fragmentMovieDetailBinding?.apply {
             movieName.text = movie.title
             movieStoryline.text = movie.overview
             movieRating.rating = movie.ratings.calculateMovieRating()
@@ -55,19 +54,14 @@ class MovieDetailFragment : Fragment() {
                 it.layoutManager =
                     LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
             }
-        }
-    }
-
-    private fun checkData(movie: Movie): Boolean {
-        return movie.actors.isNullOrEmpty()
-    }
-
-    private fun navigateBack(binding: FragmentMovieDetailBinding?) {
-        binding?.let {
-            it.back.setOnClickListener {
+            back.setOnClickListener {
                 findNavController().navigate(R.id.moviesListFragment)
             }
         }
+    }
+
+    private fun checkActorsList(movie: Movie): Boolean {
+        return movie.actors.isNullOrEmpty()
     }
 
     override fun onDestroyView() {
