@@ -31,8 +31,7 @@ class MovieDetailFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        arguments?.let { viewModel.loadSelectedMovie(it) }
-        viewModel.movie.value?.let{ movie ->
+        viewModel.movie.let{ movie ->
             initViews(movie)
             if (checkActorsList(movie))
                 Snackbar.make(view, getString(R.string.error_message), Snackbar.LENGTH_SHORT).show()
