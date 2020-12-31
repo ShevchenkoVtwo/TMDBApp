@@ -19,8 +19,10 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
     val movie: MutableLiveData<Movie> get() = mutableMovieLiveData
 
     fun loadMoviesData() {
-        viewModelScope.launch {
-            moviesList.postValue(loadMovies(getApplication()))
+        if (moviesList.value.isNullOrEmpty()) {
+            viewModelScope.launch {
+                moviesList.postValue(loadMovies(getApplication()))
+            }
         }
     }
 
