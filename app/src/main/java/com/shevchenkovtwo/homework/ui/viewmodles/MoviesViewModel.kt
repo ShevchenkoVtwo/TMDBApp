@@ -12,12 +12,12 @@ import com.shevchenkovtwo.homework.ui.adapters.MoviesAdapter.Companion.selectedM
 import kotlinx.coroutines.launch
 
 
-class MoviesViewModel(application: Application, savedStateHandle: SavedStateHandle) : AndroidViewModel(application) {
+class MoviesViewModel(application: Application) : AndroidViewModel(application) {
     //TODO rework to ViewModel when will be added Retrofit
     private val mutableMovieListLiveData = MutableLiveData<List<Movie>>(emptyList())
+    private val mutableMovieLiveData = MutableLiveData<Movie>()
     val moviesList: MutableLiveData<List<Movie>> get() = mutableMovieListLiveData
-    val movie: Movie =
-        savedStateHandle[selectedMovie] ?: throw IllegalArgumentException("Movie not found")
+    val movie: MutableLiveData<Movie> get() = mutableMovieLiveData
 
     fun loadMoviesData() {
         if (moviesList.value.isNullOrEmpty()) {
@@ -25,5 +25,9 @@ class MoviesViewModel(application: Application, savedStateHandle: SavedStateHand
                 moviesList.postValue(loadMovies(getApplication()))
             }
         }
+    }
+
+    fun loadSelectedMovie(bundle: Bundle) {
+        movie.value = bundle.getParcelable(selectedMovie)
     }
 }
