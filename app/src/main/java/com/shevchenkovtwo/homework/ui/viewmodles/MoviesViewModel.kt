@@ -4,7 +4,6 @@ import android.app.Application
 import android.os.Bundle
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.shevchenkovtwo.homework.data.Movie
 import com.shevchenkovtwo.homework.data.loadMovies
@@ -20,14 +19,14 @@ class MoviesViewModel(application: Application) : AndroidViewModel(application) 
     val movie: MutableLiveData<Movie> get() = mutableMovieLiveData
 
     fun loadMoviesData() {
-        if (moviesList.value.isNullOrEmpty()) {
+        if (mutableMovieListLiveData.value.isNullOrEmpty()) {
             viewModelScope.launch {
-                moviesList.postValue(loadMovies(getApplication()))
+                mutableMovieListLiveData.postValue(loadMovies(getApplication()))
             }
         }
     }
 
     fun loadSelectedMovie(bundle: Bundle) {
-        movie.value = bundle.getParcelable(selectedMovie)
+        mutableMovieLiveData.value = bundle.getParcelable(selectedMovie)
     }
 }
