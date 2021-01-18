@@ -19,7 +19,11 @@
         android:id="@+id/movieDetailFragment"
         android:name="com.shevchenkovtwo.homework.ui.fragments.MovieDetailFragment"
         android:label="movie_detail_fragment"
-        tools:layout="@layout/fragment_movie_detail" />
+        tools:layout="@layout/fragment_movie_detail" >
+        <argument
+            android:name="movie"
+            app:argType="com.shevchenkovtwo.homework.data.models.MovieDetails" />
+    </fragment>
 
     <fragment
         android:id="@+id/ticketFragment"

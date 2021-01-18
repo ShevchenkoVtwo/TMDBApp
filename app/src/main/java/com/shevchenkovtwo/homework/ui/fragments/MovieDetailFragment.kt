@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
@@ -19,7 +20,6 @@ import com.shevchenkovtwo.homework.data.models.MovieDetails
 import com.shevchenkovtwo.homework.databinding.FragmentMovieDetailBinding
 import com.shevchenkovtwo.homework.network.ResponsesLogging
 import com.shevchenkovtwo.homework.ui.adapters.ActorsAdapter
-import com.shevchenkovtwo.homework.ui.adapters.MoviesAdapter.Companion.selectedMovie
 import com.shevchenkovtwo.homework.ui.adapters.calculateMovieRating
 import com.shevchenkovtwo.homework.ui.viewmodels.MovieDetailsViewModel
 import com.shevchenkovtwo.homework.ui.viewmodels.MoviesViewModelFactory
@@ -31,10 +31,10 @@ import kotlinx.coroutines.launch
 class MovieDetailFragment : Fragment() {
 
     private var fragmentMovieDetailBinding: FragmentMovieDetailBinding? = null
+    private val args: MovieDetailFragmentArgs by navArgs()
     private var job: Job? = null
     private val viewModel: MovieDetailsViewModel by viewModels { MoviesViewModelFactory() }
     private val adapter = ActorsAdapter()
-    private var movieDetails: MovieDetails? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
@@ -45,8 +45,7 @@ class MovieDetailFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setClickListenerForNavigation()
-        movieDetails = arguments?.getParcelable(selectedMovie)
-        movieDetails?.let { initViews(it) }
+        initViews(args.movie)
         initLoad()
         initViewModel()
         initRecyclerView()
@@ -61,7 +60,7 @@ class MovieDetailFragment : Fragment() {
     }
 
     private fun initLoad() {
-        movieDetails?.apply {
+        args.movie.apply {
             viewModel.loadActors(tmdbId)
         }
     }
@@ -106,14 +105,13 @@ class MovieDetailFragment : Fragment() {
             actors.let {
                 it.adapter = adapter
                 it.layoutManager =
-                    LinearLayoutManager(requireContext(),RecyclerView.HORIZONTAL,false)
+                    LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
             }
         }
     }
 
     override fun onDestroyView() {
         fragmentMovieDetailBinding = null
-        movieDetails = null
         job = null
         super.onDestroyView()
     }

@@ -1,14 +1,19 @@
 package com.shevchenkovtwo.homework.ui.viewholders
 
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.shevchenkovtwo.homework.R
 import com.shevchenkovtwo.homework.data.models.MovieDetails
 import com.shevchenkovtwo.homework.databinding.ListViewMovieItemBinding
 import com.shevchenkovtwo.homework.ui.adapters.calculateMovieRating
+import com.shevchenkovtwo.homework.ui.fragments.MoviesListFragmentDirections
 
 
-class MovieViewHolder(private val binding: ListViewMovieItemBinding) :
+class MovieViewHolder(
+    private val binding: ListViewMovieItemBinding,
+    var movie: MovieDetails? = null
+) :
     RecyclerView.ViewHolder(binding.root) {
     fun bind(movie: MovieDetails) {
         binding.movieLayout.movieTitle.text = movie.title
@@ -24,6 +29,16 @@ class MovieViewHolder(private val binding: ListViewMovieItemBinding) :
             crossfade(true)
             error(R.drawable.error)
             placeholder(R.drawable.gradient)
+        }
+    }
+
+    init {
+        binding.root.setOnClickListener {
+            movie?.let { movie ->
+                val action =
+                    MoviesListFragmentDirections.actionFragmentMoviesListToMovieDetailFragment(movie)
+                it.findNavController().navigate(action)
+            }
         }
     }
 }
