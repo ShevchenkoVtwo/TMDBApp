@@ -14,9 +14,20 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         mainActivityBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mainActivityBinding.root)
+        if (savedInstanceState == null){
+            setupBottomNavigation()
+        }
+    }
+
+    override fun onRestoreInstanceState(savedInstanceState: Bundle) {
+        super.onRestoreInstanceState(savedInstanceState)
+        setupBottomNavigation()
+    }
+
+    private fun setupBottomNavigation(){
         val navView = mainActivityBinding.BottomNavigationView
         val navHostFragment =
-        supportFragmentManager.findFragmentById(mainActivityBinding.navHostFragment.id) as NavHostFragment
+            supportFragmentManager.findFragmentById(mainActivityBinding.navHostFragment.id) as NavHostFragment
         val navController = navHostFragment.navController
         navView.setupWithNavController(navController)
     }
