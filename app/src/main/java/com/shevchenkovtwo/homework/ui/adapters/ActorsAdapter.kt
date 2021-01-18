@@ -2,33 +2,42 @@ package com.shevchenkovtwo.homework.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.AsyncListDiffer
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
-import com.shevchenkovtwo.homework.data.Actor
+import com.shevchenkovtwo.homework.data.models.Actor
+import com.shevchenkovtwo.homework.data.models.MovieDetails
 import com.shevchenkovtwo.homework.databinding.ListViewActorItemBinding
+import com.shevchenkovtwo.homework.ui.viewholders.ActorViewHolder
 
-class ActorsAdapter(private var actors: List<Actor>) :
-    RecyclerView.Adapter<ActorsAdapter.ActorsViewHolder>() {
-    class ActorsViewHolder(private val binding: ListViewActorItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-        fun bind(actor: Actor) {
-            binding.actorName.text = actor.name
-            binding.actor.load(actor.picture)
-        //TODO Add placeholders for empty images when will be added retrofit
-        }
-    }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorsViewHolder {
+class ActorsAdapter : RecyclerView.Adapter<ActorViewHolder>() {
+
+    val differ = AsyncListDiffer(this, COMPARATOR)
+
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
         val binding =
             ListViewActorItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ActorsViewHolder(binding)
+        return ActorViewHolder(binding)
     }
 
-    override fun onBindViewHolder(holder: ActorsViewHolder, position: Int) {
-        holder.bind(actors[position])
+    override fun onBindViewHolder(holder: ActorViewHolder, position: Int) {
+        holder.bind(differ.currentList[position])
     }
 
     override fun getItemCount(): Int {
-        return actors.size
+        return differ.currentList.size
+    }
+
+    companion object {
+        private val COMPARATOR = object : DiffUtil.ItemCallback<Actor>() {
+            override fun areItemsTheSame(oldItem: Actor, newItem: Actor): Boolean {
+                return oldItem.id == newItem.id
+            }
+
+            override fun areContentsTheSame(oldItem: Actor, newItem: Actor): Boolean {
+                return newItem == oldItem
+            }
+        }
     }
 }
