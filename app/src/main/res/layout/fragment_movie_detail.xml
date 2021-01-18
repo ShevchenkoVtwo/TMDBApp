@@ -21,7 +21,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/mask_avengers" />
+            tools:srcCompat="@drawable/gradient" />
 
         <ImageView
             android:id="@+id/favourite"
@@ -186,6 +186,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cast"
             tools:listitem="@layout/list_view_actor_item" />
+
+        <ProgressBar
+            android:id="@+id/loading_data_progress_bar"
+            style="@style/Widget.AppCompat.ProgressBar"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="@dimen/views_margin_16"
+            android:layout_marginBottom="@dimen/views_margin_16"
+            android:indeterminateTint="@color/highlighted_color"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/actors"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/actors" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
