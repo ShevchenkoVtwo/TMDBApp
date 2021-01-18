@@ -1,25 +1,28 @@
-package com.shevchenkovtwo.homework
+package com.shevchenkovtwo.homework.ui.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import com.google.android.material.snackbar.Snackbar
+import com.shevchenkovtwo.homework.R
 import com.shevchenkovtwo.homework.data.Movie
 import com.shevchenkovtwo.homework.databinding.FragmentMovieDetailBinding
+import com.shevchenkovtwo.homework.ui.adapters.ActorsAdapter
+import com.shevchenkovtwo.homework.ui.adapters.calculateMovieRating
+import com.shevchenkovtwo.homework.ui.viewmodles.MoviesViewModel
 
 
 class MovieDetailFragment : Fragment() {
 
     private var fragmentMovieDetailBinding: FragmentMovieDetailBinding? = null
-    private var movieDetailViewModel: MovieDetailViewModel? = null
-    private var recyclerView: RecyclerView? = null
+    private val viewModel: MoviesViewModel by viewModels()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         val binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
@@ -29,51 +32,40 @@ class MovieDetailFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        movieDetailViewModel = ViewModelProvider(this).get(MovieDetailViewModel::class.java)
-        movieDetailViewModel?.let { movieViewModel ->
-            movieViewModel.getSelectedMovie().observe(viewLifecycleOwner, { movie ->
-                fragmentMovieDetailBinding?.let { binding ->
-                    initView(movie, binding)
-                    navigateBack(binding)
-                    if (checkData(movie)){
-                        Snackbar.make(view, getString(R.string.error_message), Snackbar.LENGTH_SHORT).show()
-                    }
-                }
-            })
+        arguments?.let { viewModel.loadSelectedMovie(it) }
+        viewModel.movie.value?.let{ movie ->
+            initViews(movie)
+            if (checkActorsList(movie))
+                Snackbar.make(view, getString(R.string.error_message), Snackbar.LENGTH_SHORT).show()
         }
     }
 
-    private fun initView(movie: Movie, binding: FragmentMovieDetailBinding) {
-        binding.apply {
+    private fun initViews(movie: Movie) {
+        fragmentMovieDetailBinding?.apply {
             movieName.text = movie.title
             movieStoryline.text = movie.overview
-            movieRating.rating = calculateMovieRating(movie.ratings)
-            pg.text = setPGText(movie.minimumAge)
-            reviews.text = setReviewsText(movie.numberOfRatings)
+            movieRating.rating = movie.ratings.calculateMovieRating()
+            pg.text = getString(R.string.pg,movie.minimumAge)
+            reviews.text = getString(R.string.reviews,movie.numberOfRatings)
             tag.text = movie.genres.joinToString { genre -> genre.name }
             mask.load(movie.backdrop)
-            recyclerView = actors
-            recyclerView?.let {
+            actors.let {
                 it.adapter = ActorsAdapter(movie.actors)
                 it.layoutManager =
                     LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
             }
+            back.setOnClickListener {
+                findNavController().navigate(R.id.moviesListFragment)
+            }
         }
     }
 
-    private fun checkData(movie: Movie): Boolean {
-        return  movie.actors.isNullOrEmpty()
-    }
-
-    private fun navigateBack(binding: FragmentMovieDetailBinding) {
-        binding.back.setOnClickListener {
-            findNavController().navigate(R.id.moviesListFragment)
-        }
+    private fun checkActorsList(movie: Movie): Boolean {
+        return movie.actors.isNullOrEmpty()
     }
 
     override fun onDestroyView() {
         fragmentMovieDetailBinding = null
-        recyclerView = null
         super.onDestroyView()
     }
 }

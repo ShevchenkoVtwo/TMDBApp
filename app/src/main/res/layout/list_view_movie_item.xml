@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/items_separator"
-    app:cardBackgroundColor="@color/arrow_color"
+    app:cardBackgroundColor="@color/icons_color"
     app:cardCornerRadius="5dp">
 
     <include

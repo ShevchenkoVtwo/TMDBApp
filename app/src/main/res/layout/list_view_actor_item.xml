@@ -4,7 +4,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_margin="@dimen/views_margin_4"
-    android:background="@color/movie_background">
+    android:background="@color/app_background">
 
     <ImageView
         android:id="@+id/actor"
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/views_margin_8"
         android:fontFamily="@font/roboto_medium"
-        android:text="@string/robert_downey_jr"
+        android:text="@string/actor_name"
         android:textColor="@color/title_color"
         app:layout_constraintEnd_toEndOf="@+id/actor"
         app:layout_constraintStart_toStartOf="@+id/actor"
