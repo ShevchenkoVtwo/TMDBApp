@@ -2,7 +2,6 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'org.jetbrains.kotlin.plugin.serialization'
     id 'kotlin-parcelize'
 }
 
@@ -21,9 +20,18 @@ android {
     }
 
     buildTypes {
+        def keystorePropertiesFile = rootProject.file("keystore.properties")
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'API_KEY', keystoreProperties['API_KEY']
+            buildConfigField 'String', 'BASE_URL', keystoreProperties['BASE_URL']
+        }
+        debug {
+            buildConfigField 'String', 'API_KEY', keystoreProperties['API_KEY']
+            buildConfigField 'String', 'BASE_URL', keystoreProperties['BASE_URL']
         }
     }
     compileOptions {
@@ -47,9 +55,12 @@ dependencies {
     def material_version = "1.2.1"
     def androidx_core_version = "1.3.2"
     def appcompat_version = "1.2.0"
-    def coroutines_version = "1.4.1"
-    def serialization_version = "1.0.1"
-    def coil_version = "1.1.0"
+    def coroutines_version = "1.4.2"
+    def coil_version = '1.1.1'
+    def retrofit_version = "2.9.0"
+    def moshi_version = "1.11.0"
+    def logging_interceptor="4.9.0"
+    def paging_version = "3.0.0-alpha12"
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation "androidx.core:core-ktx:$androidx_core_version"
@@ -64,8 +75,15 @@ dependencies {
     implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
     //Coroutines
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-    //Serialization
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
+    //Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$moshi_version"
     //Coil
     implementation "io.coil-kt:coil:$coil_version"
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+    implementation "com.squareup.okhttp3:logging-interceptor:$logging_interceptor"
+    //Pagination
+    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+
 }
