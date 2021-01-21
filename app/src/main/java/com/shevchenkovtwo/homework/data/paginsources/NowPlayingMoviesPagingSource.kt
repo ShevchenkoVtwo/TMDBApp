@@ -1,10 +1,8 @@
 package com.shevchenkovtwo.homework.data.paginsources
 
 import androidx.paging.PagingSource
-import com.shevchenkovtwo.homework.data.MoviesRepository.Companion.BACKDROP
-import com.shevchenkovtwo.homework.data.MoviesRepository.Companion.POSTER
-import com.shevchenkovtwo.homework.data.MoviesRepository.Companion.setImageURL
 import com.shevchenkovtwo.homework.data.models.MovieDetails
+import com.shevchenkovtwo.homework.data.setMovieDetails
 import com.shevchenkovtwo.homework.network.api.TMDBApi
 import retrofit2.HttpException
 import java.io.IOException
@@ -39,20 +37,5 @@ class NowPlayingMoviesPagingSource(private val network: TMDBApi) :
         } catch (exception: HttpException) {
             return LoadResult.Error(exception)
         }
-    }
-
-    private suspend fun setMovieDetails(movie: MovieDetails): MovieDetails {
-        return MovieDetails(
-            tmdbId = movie.tmdbId,
-            title = movie.title,
-            overview = movie.overview,
-            poster = setImageURL(POSTER, movie.poster),
-            backdrop = setImageURL(BACKDROP, movie.backdrop),
-            ratings = movie.ratings,
-            numberOfRatings = movie.numberOfRatings,
-            age = movie.age,
-            runtime = movie.runtime,
-            genres = movie.genres
-        )
     }
 }
