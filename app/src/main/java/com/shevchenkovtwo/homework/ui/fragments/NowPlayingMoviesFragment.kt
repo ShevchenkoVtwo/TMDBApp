@@ -1,10 +1,7 @@
 package com.shevchenkovtwo.homework.ui.fragments
 
 import android.content.res.Configuration
-import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.view.isVisible
@@ -14,58 +11,47 @@ import androidx.paging.LoadState
 import androidx.recyclerview.widget.GridLayoutManager
 import com.shevchenkovtwo.homework.databinding.FragmentMoviesListBinding
 import com.shevchenkovtwo.homework.ui.adapters.MoviesAdapter
-import com.shevchenkovtwo.homework.ui.viewmodels.MoviesViewModel
-import com.shevchenkovtwo.homework.ui.viewmodels.MoviesViewModelFactory
+import com.shevchenkovtwo.homework.ui.utils.BaseFragment
+import com.shevchenkovtwo.homework.ui.viewmodels.NowPlayingMoviesViewModel
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.launch
 
 
-class MoviesListFragment : Fragment() {
+@AndroidEntryPoint
+class NowPlayingMoviesFragment : BaseFragment<FragmentMoviesListBinding>() {
 
-    private var fragmentMoviesListBinding: FragmentMoviesListBinding? = null
-    private var spanCount: Int = 2
-    private var job: Job? = null
-    private val viewModel: MoviesViewModel by viewModels { MoviesViewModelFactory() }
+    @ExperimentalCoroutinesApi
+    private val viewModel: NowPlayingMoviesViewModel by viewModels()
     private val adapter = MoviesAdapter()
+    private var job: Job? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val binding = FragmentMoviesListBinding.inflate(inflater, container, false)
-        fragmentMoviesListBinding = binding
-        spanCount = if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
-            ORIENTATION_VERTICAL else ORIENTATION_HORIZONTAL
-        return binding.root
-    }
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentMoviesListBinding = FragmentMoviesListBinding::inflate
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    @ExperimentalCoroutinesApi
+    override fun setupViews() {
         initViewModel()
         initAdapter()
         initRecyclerView()
     }
 
+    @ExperimentalCoroutinesApi
     private fun initViewModel() {
         job?.cancel()
-        job = lifecycleScope.launch {
-            viewModel.loadNowPlayingMovies().collectLatest {
+        job = lifecycleScope.launchWhenStarted {
+            viewModel.nowPlayingMovies.collectLatest {
                 adapter.submitData(it)
             }
         }
     }
 
-    private fun initRecyclerView() {
-        fragmentMoviesListBinding?.moviesList?.apply {
-            layoutManager =
-                GridLayoutManager(requireContext(), spanCount)
-        }
-    }
-
     private fun initAdapter() {
-        fragmentMoviesListBinding?.apply {
+        binding?.apply {
             moviesList.adapter = adapter
             adapter.addLoadStateListener { loadState ->
                 progressBar.isVisible = loadState.source.refresh is LoadState.Loading
-                loadingDataProgressBar.isVisible = loadState.append is LoadState.Loading
+                loadingDataProgressBar.isVisible = loadState.source.append is LoadState.Loading
 
                 val errorState = loadState.source.append as? LoadState.Error
                     ?: loadState.source.prepend as? LoadState.Error
@@ -78,8 +64,15 @@ class MoviesListFragment : Fragment() {
         }
     }
 
+    private fun initRecyclerView() {
+        val spanCount = if (resources.configuration.orientation == Configuration.ORIENTATION_PORTRAIT)
+            ORIENTATION_VERTICAL else ORIENTATION_HORIZONTAL
+        binding?.apply {
+            moviesList.layoutManager = GridLayoutManager(requireContext(), spanCount)
+        }
+    }
+
     override fun onDestroyView() {
-        fragmentMoviesListBinding = null
         job = null
         super.onDestroyView()
     }
@@ -88,4 +81,5 @@ class MoviesListFragment : Fragment() {
         const val ORIENTATION_VERTICAL = 2
         const val ORIENTATION_HORIZONTAL = 4
     }
+
 }
