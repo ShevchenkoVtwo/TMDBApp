@@ -4,12 +4,12 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
-import com.shevchenkovtwo.homework.data.models.MovieDetails
 import com.shevchenkovtwo.homework.databinding.ListViewMovieItemBinding
+import com.shevchenkovtwo.homework.basemodels.Movie
 import com.shevchenkovtwo.homework.ui.viewholders.MovieViewHolder
 
 
-class MoviesAdapter : PagingDataAdapter<MovieDetails, MovieViewHolder>(COMPARATOR) {
+class MoviesAdapter : PagingDataAdapter<Movie, MovieViewHolder>(COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MovieViewHolder {
         val binding =
@@ -26,17 +26,15 @@ class MoviesAdapter : PagingDataAdapter<MovieDetails, MovieViewHolder>(COMPARATO
     }
 
     companion object {
-        private val COMPARATOR = object : DiffUtil.ItemCallback<MovieDetails>() {
-            override fun areItemsTheSame(oldItem: MovieDetails, newItem: MovieDetails): Boolean {
-                return oldItem.tmdbId == newItem.tmdbId
+        private val COMPARATOR = object : DiffUtil.ItemCallback<Movie>() {
+            override fun areItemsTheSame(oldItem: Movie, newItem: Movie): Boolean {
+                return oldItem.id == newItem.id
             }
 
-            override fun areContentsTheSame(oldItem: MovieDetails, newItem: MovieDetails): Boolean {
+            override fun areContentsTheSame(oldItem: Movie, newItem: Movie): Boolean {
                 return newItem == oldItem
             }
         }
     }
 
 }
-
-fun Float.calculateMovieRating(): Float = this / 2

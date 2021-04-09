@@ -2,18 +2,13 @@ package com.shevchenkovtwo.homework.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.recyclerview.widget.AsyncListDiffer
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.shevchenkovtwo.homework.data.models.Actor
-import com.shevchenkovtwo.homework.data.models.MovieDetails
+import com.shevchenkovtwo.homework.basemodels.Actor
 import com.shevchenkovtwo.homework.databinding.ListViewActorItemBinding
 import com.shevchenkovtwo.homework.ui.viewholders.ActorViewHolder
 
 
-class ActorsAdapter : RecyclerView.Adapter<ActorViewHolder>() {
-
-    val differ = AsyncListDiffer(this, COMPARATOR)
+class ActorsAdapter(private val actors: List<Actor>) : RecyclerView.Adapter<ActorViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ActorViewHolder {
         val binding =
@@ -22,22 +17,10 @@ class ActorsAdapter : RecyclerView.Adapter<ActorViewHolder>() {
     }
 
     override fun onBindViewHolder(holder: ActorViewHolder, position: Int) {
-        holder.bind(differ.currentList[position])
+        holder.bind(actors[position])
     }
 
     override fun getItemCount(): Int {
-        return differ.currentList.size
-    }
-
-    companion object {
-        private val COMPARATOR = object : DiffUtil.ItemCallback<Actor>() {
-            override fun areItemsTheSame(oldItem: Actor, newItem: Actor): Boolean {
-                return oldItem.id == newItem.id
-            }
-
-            override fun areContentsTheSame(oldItem: Actor, newItem: Actor): Boolean {
-                return newItem == oldItem
-            }
-        }
+        return actors.size
     }
 }
