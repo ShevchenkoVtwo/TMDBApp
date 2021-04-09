@@ -1,11 +1,11 @@
-package com.shevchenkovtwo.homework.data.models
+package com.shevchenkovtwo.homework.network.models
 
 import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 
 
 @JsonClass(generateAdapter = true)
-data class Actor(
+data class ActorDto(
     val id: Int,
     val name: String,
     @Json(name = "profile_path")
