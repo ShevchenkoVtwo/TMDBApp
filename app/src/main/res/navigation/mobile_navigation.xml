@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/moviesListFragment"
-        android:name="com.shevchenkovtwo.homework.ui.fragments.MoviesListFragment"
+        android:name="com.shevchenkovtwo.homework.ui.fragments.NowPlayingMoviesFragment"
         android:label="fragment_movies_list"
         tools:layout="@layout/fragment_movies_list">
         <action
@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_movie_detail" >
         <argument
             android:name="movie"
-            app:argType="com.shevchenkovtwo.homework.data.models.MovieDetails" />
+            app:argType="com.shevchenkovtwo.homework.basemodels.Movie" />
     </fragment>
 
     <fragment

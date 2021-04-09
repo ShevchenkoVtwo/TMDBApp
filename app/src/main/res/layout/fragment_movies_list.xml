@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:layout_gravity="center"
     android:background="@color/app_background"
-    tools:context=".ui.fragments.MoviesListFragment">
+    tools:context=".ui.fragments.NowPlayingMoviesFragment">
 
     <TextView
         android:id="@+id/movies_list_header"
