@@ -55,7 +55,7 @@ fun mapToDomainMovieModel(model: MovieDto, details: MovieDetailsDto, actors: Lis
     backdrop = details.backdrop,
     ratings = model.ratings,
     numberOfRatings = model.numberOfRatings,
-    age = if (model.age) 16 else 13,
+    minimumAge = if (model.age) 16 else 13,
     runtime = details.runtime,
     genres = details.genres,
     actors = actors

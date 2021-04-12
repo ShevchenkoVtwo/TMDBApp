@@ -37,7 +37,7 @@ class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
             movieName.text = movie.name
             movieStoryline.text = movie.overview
             movieRating.rating = movie.ratings
-            pg.text = getString(R.string.pg, movie.age)
+            pg.text = getString(R.string.pg, movie.minimumAge)
             reviews.text = getString(R.string.reviews, movie.numberOfRatings)
             tag.text = movie.genres.joinToString { genre -> genre.name }
             mask.load(movie.backdrop)

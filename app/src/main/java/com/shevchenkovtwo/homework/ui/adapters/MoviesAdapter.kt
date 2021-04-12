@@ -18,10 +18,8 @@ class MoviesAdapter : PagingDataAdapter<Movie, MovieViewHolder>(COMPARATOR) {
     }
 
     override fun onBindViewHolder(holder: MovieViewHolder, position: Int) {
-        val item = getItem(position)
-        if (item != null) {
-            holder.bind(item)
-            holder.movie = item
+        getItem(position)?.let { movie ->
+            holder.bind(movie)
         }
     }
 
