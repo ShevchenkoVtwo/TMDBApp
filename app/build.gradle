@@ -2,11 +2,13 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
-    id 'org.jetbrains.kotlin.plugin.serialization'
     id 'kotlin-parcelize'
+    id 'dagger.hilt.android.plugin'
+    id 'androidx.navigation.safeargs.kotlin'
 }
 
 android {
+
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
 
@@ -21,51 +23,95 @@ android {
     }
 
     buildTypes {
+        def keystorePropertiesFile = rootProject.file("keystore.properties")
+        def keystoreProperties = new Properties()
+        keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            buildConfigField 'String', 'API_KEY', keystoreProperties['API_KEY']
+            buildConfigField 'String', 'BASE_URL', keystoreProperties['BASE_URL']
+        }
+
+        debug {
+            buildConfigField 'String', 'API_KEY', keystoreProperties['API_KEY']
+            buildConfigField 'String', 'BASE_URL', keystoreProperties['BASE_URL']
         }
     }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
     viewBinding {
         enabled = true
     }
 }
 
 dependencies {
-    def junit_version = "4.13.1"
-    def junit_test_version = "1.1.2"
-    def espresso_version = "3.3.0"
-    def navigation_version = "2.3.2"
-    def constraint_layout_version = "2.0.4"
-    def material_version = "1.2.1"
-    def androidx_core_version = "1.3.2"
-    def appcompat_version = "1.2.0"
-    def coroutines_version = "1.4.1"
-    def serialization_version = "1.0.1"
-    def coil_version = "1.1.0"
+    def junitVersion = '4.13.2'
+    def junitTestVersion = '1.1.2'
+    def espressoVersion = '3.3.0'
+    def constraintLayoutVersion = '2.0.4'
+    def materialVersion = '1.3.0'
+    def androidxCoreVersion = '1.3.2'
+    def appCompatVersion = '1.2.0'
+    def appCompatActivity = '1.2.2'
+    def coroutinesVersion = '1.4.2'
+    def coilVersion = '1.1.1'
+    def retrofitVersion = '2.9.0'
+    def moshiVersion = '1.11.0'
+    def loggingInterceptor = '5.0.0-alpha.2'
+    def pagingVersion = '3.0.0-beta03'
+    def daggerHilt = '2.33-beta'
+    def daggerHiltLifecycle = '1.0.0-alpha03'
+    def roomVersion = '2.2.6'
+    def androidLifecycle = '2.3.1'
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation "androidx.core:core-ktx:$androidx_core_version"
-    implementation "androidx.appcompat:appcompat:$appcompat_version"
-    implementation "com.google.android.material:material:$material_version"
-    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
-    testImplementation "junit:junit:$junit_version"
-    androidTestImplementation "androidx.test.ext:junit:$junit_test_version"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    implementation "androidx.core:core-ktx:$androidxCoreVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    //Tests
+    testImplementation "junit:junit:$junitVersion"
+    androidTestImplementation "androidx.test.ext:junit:$junitTestVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     //Navigation
-    implementation "androidx.navigation:navigation-fragment-ktx:$navigation_version"
-    implementation "androidx.navigation:navigation-ui-ktx:$navigation_version"
+    implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+    implementation "androidx.navigation:navigation-dynamic-features-fragment:$nav_version"
     //Coroutines
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutines_version"
-    //Serialization
-    implementation "org.jetbrains.kotlinx:kotlinx-serialization-json:$serialization_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
+    //AndroidLifecycle
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidLifecycle"
+    implementation "androidx.lifecycle:lifecycle-runtime-ktx:$androidLifecycle"
+    //Moshi
+    implementation "com.squareup.moshi:moshi-kotlin:$moshiVersion"
     //Coil
-    implementation "io.coil-kt:coil:$coil_version"
+    implementation "io.coil-kt:coil:$coilVersion"
+    //Retrofit
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-moshi:$retrofitVersion"
+    //Okhttp3
+    implementation "com.squareup.okhttp3:logging-interceptor:$loggingInterceptor"
+    //Pagination
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    //Dagger - Hilt
+    implementation "com.google.dagger:hilt-android:$daggerHilt"
+    kapt "com.google.dagger:hilt-android-compiler:$daggerHilt"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$daggerHiltLifecycle"
+    // Activity KTX for viewModels()
+    implementation "androidx.activity:activity-ktx:$appCompatActivity"
+    // Room
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    // Kotlin Extensions and Coroutines support for Room
+    implementation "androidx.room:room-ktx:$roomVersion"
 }

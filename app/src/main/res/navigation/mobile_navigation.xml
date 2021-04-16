@@ -7,11 +7,11 @@
 
     <fragment
         android:id="@+id/moviesListFragment"
-        android:name="com.shevchenkovtwo.homework.ui.fragments.MoviesListFragment"
+        android:name="com.shevchenkovtwo.homework.ui.fragments.NowPlayingMoviesFragment"
         android:label="fragment_movies_list"
         tools:layout="@layout/fragment_movies_list">
         <action
-            android:id="@+id/action_fragmentMoviesList_to_movieDetailFragment"
+            android:id="@+id/action_moviesListFragment_to_movieDetailFragment"
             app:destination="@id/movieDetailFragment" />
     </fragment>
 
@@ -19,7 +19,11 @@
         android:id="@+id/movieDetailFragment"
         android:name="com.shevchenkovtwo.homework.ui.fragments.MovieDetailFragment"
         android:label="movie_detail_fragment"
-        tools:layout="@layout/fragment_movie_detail" />
+        tools:layout="@layout/fragment_movie_detail" >
+        <argument
+            android:name="movie"
+            app:argType="com.shevchenkovtwo.homework.basemodels.Movie" />
+    </fragment>
 
     <fragment
         android:id="@+id/ticketFragment"

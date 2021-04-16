@@ -1,71 +1,52 @@
 package com.shevchenkovtwo.homework.ui.fragments
 
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.google.android.material.snackbar.Snackbar
 import com.shevchenkovtwo.homework.R
-import com.shevchenkovtwo.homework.data.Movie
 import com.shevchenkovtwo.homework.databinding.FragmentMovieDetailBinding
+import com.shevchenkovtwo.homework.basemodels.Movie
 import com.shevchenkovtwo.homework.ui.adapters.ActorsAdapter
-import com.shevchenkovtwo.homework.ui.adapters.calculateMovieRating
-import com.shevchenkovtwo.homework.ui.viewmodles.MoviesViewModel
+import com.shevchenkovtwo.homework.ui.utils.BaseFragment
 
 
-class MovieDetailFragment : Fragment() {
+class MovieDetailFragment : BaseFragment<FragmentMovieDetailBinding>() {
 
-    private var fragmentMovieDetailBinding: FragmentMovieDetailBinding? = null
-    private val viewModel: MoviesViewModel by viewModels()
+    private val fragmentArguments: MovieDetailFragmentArgs by navArgs()
+    override val bindingInflater: (LayoutInflater, ViewGroup?, Boolean) -> FragmentMovieDetailBinding = FragmentMovieDetailBinding::inflate
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
-        val binding = FragmentMovieDetailBinding.inflate(inflater, container, false)
-        fragmentMovieDetailBinding = binding
-        return binding.root
+    override fun setupViews() {
+        setClickListenerForNavigation()
+        initViews(fragmentArguments.movie)
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        arguments?.let { viewModel.loadSelectedMovie(it) }
-        viewModel.movie.value?.let{ movie ->
-            initViews(movie)
-            if (checkActorsList(movie))
-                Snackbar.make(view, getString(R.string.error_message), Snackbar.LENGTH_SHORT).show()
+    private fun setClickListenerForNavigation() {
+        binding?.apply {
+            back.setOnClickListener {
+                findNavController().popBackStack()
+            }
         }
     }
 
     private fun initViews(movie: Movie) {
-        fragmentMovieDetailBinding?.apply {
-            movieName.text = movie.title
+        binding?.apply {
+            movieName.text = movie.name
             movieStoryline.text = movie.overview
-            movieRating.rating = movie.ratings.calculateMovieRating()
-            pg.text = getString(R.string.pg,movie.minimumAge)
-            reviews.text = getString(R.string.reviews,movie.numberOfRatings)
+            movieRating.rating = movie.ratings
+            pg.text = getString(R.string.pg, movie.minimumAge)
+            reviews.text = getString(R.string.reviews, movie.numberOfRatings)
             tag.text = movie.genres.joinToString { genre -> genre.name }
             mask.load(movie.backdrop)
-            actors.let {
-                it.adapter = ActorsAdapter(movie.actors)
-                it.layoutManager =
+            actors.apply {
+                adapter = ActorsAdapter(movie.actors)
+                layoutManager =
                     LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
-            }
-            back.setOnClickListener {
-                findNavController().navigate(R.id.moviesListFragment)
             }
         }
     }
 
-    private fun checkActorsList(movie: Movie): Boolean {
-        return movie.actors.isNullOrEmpty()
-    }
-
-    override fun onDestroyView() {
-        fragmentMovieDetailBinding = null
-        super.onDestroyView()
-    }
 }
