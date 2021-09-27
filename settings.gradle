@@ -1,2 +1,4 @@
 include ':app'
-rootProject.name = "Homework"
+include ':data'
+include ':domain'
+rootProject.name = "TMDBApp"

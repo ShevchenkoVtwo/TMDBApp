@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/moviesListFragment"
-        android:name="com.shevchenkovtwo.homework.ui.fragments.NowPlayingMoviesFragment"
+        android:name="com.shevchenkovtwo.tmdbApp.ui.fragments.NowPlayingMoviesFragment"
         android:label="fragment_movies_list"
         tools:layout="@layout/fragment_movies_list">
         <action
@@ -17,35 +17,35 @@
 
     <fragment
         android:id="@+id/movieDetailFragment"
-        android:name="com.shevchenkovtwo.homework.ui.fragments.MovieDetailFragment"
+        android:name="com.shevchenkovtwo.tmdbApp.ui.fragments.MovieDetailFragment"
         android:label="movie_detail_fragment"
         tools:layout="@layout/fragment_movie_detail" >
         <argument
             android:name="movie"
-            app:argType="com.shevchenkovtwo.homework.basemodels.Movie" />
+            app:argType="domain.models.Movie" />
     </fragment>
 
     <fragment
         android:id="@+id/ticketFragment"
-        android:name="com.shevchenkovtwo.homework.ui.fragments.TicketFragment"
+        android:name="com.shevchenkovtwo.tmdbApp.ui.fragments.TicketFragment"
         android:label="Tickets"
         tools:layout="@layout/fragment_ticket" />
 
     <fragment
         android:id="@+id/cinemasFragment"
-        android:name="com.shevchenkovtwo.homework.ui.fragments.CinemasFragment"
+        android:name="com.shevchenkovtwo.tmdbApp.ui.fragments.CinemasFragment"
         android:label="Cinemas"
         tools:layout="@layout/fragment_cinemas" />
 
     <fragment
         android:id="@+id/favouriteFragment"
-        android:name="com.shevchenkovtwo.homework.ui.fragments.FavouriteFragment"
+        android:name="com.shevchenkovtwo.tmdbApp.ui.fragments.FavouriteFragment"
         android:label="Favourite"
         tools:layout="@layout/fragment_favourite" />
 
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.shevchenkovtwo.homework.ui.fragments.ProfileFragment"
+        android:name="com.shevchenkovtwo.tmdbApp.ui.fragments.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
 
