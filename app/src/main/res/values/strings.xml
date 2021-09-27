@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Homework</string>
+    <string name="app_name">TMDBApp</string>
     <string name="image_back">Back</string>
     <string name="storyline">Storyline</string>
     <string name="cast">Cast</string>
@@ -22,4 +22,5 @@
     <string name="menu_cinemas">Cinemas</string>
     <string name="menu_favourite">Favourite</string>
     <string name="menu_profile">Profile</string>
+    <string name="title_buildsrc">Build Resources</string>
 </resources>
