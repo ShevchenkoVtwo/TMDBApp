@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:layout_margin="@dimen/views_margin_4"
-    android:background="@color/app_background">
+    android:layout_margin="@dimen/dimen_4"
+    android:background="@color/app_background_color">
 
     <ImageView
         android:id="@+id/actor"
@@ -16,14 +16,13 @@
         app:layout_constraintTop_toTopOf="parent"
         android:contentDescription="@string/actor_photo" />
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/actor_name"
+        style="@style/Widget.MaterialComponents.TextView.SubTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/views_margin_8"
-        android:fontFamily="@font/roboto_medium"
+        android:layout_marginTop="@dimen/dimen_8"
         android:text="@string/actor_name"
-        android:textColor="@color/title_color"
         app:layout_constraintEnd_toEndOf="@+id/actor"
         app:layout_constraintStart_toStartOf="@+id/actor"
         app:layout_constraintTop_toBottomOf="@+id/actor" />

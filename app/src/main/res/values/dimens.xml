@@ -1,13 +1,17 @@
 <resources>
-    <dimen name="items_separator">12dp</dimen>
-    <dimen name="views_margin_16">16dp</dimen>
-    <dimen name="views_margin_8">8dp</dimen>
-    <dimen name="views_margin_4">4dp</dimen>
-    <dimen name="views_margin_2">2dp</dimen>
+    <dimen name="dimen_2">2dp</dimen>
+    <dimen name="dimen_4">4dp</dimen>
+    <dimen name="dimen_8">8dp</dimen>
+    <dimen name="dimen_12">12dp</dimen>
+    <dimen name="dimen_16">16dp</dimen>
+    <dimen name="dimen_20">20dp</dimen>
+    <dimen name="dimen_225">225dp</dimen>
+    <dimen name="text_dimen_14">14sp</dimen>
+    <dimen name="text_dimen_40">40sp</dimen>
     <dimen name="views_padding_2">2dp</dimen>
     <dimen name="views_padding_4">4dp</dimen>
-    <dimen name="views_padding_20">20dp</dimen>
     <dimen name="views_padding_8">8dp</dimen>
-    <dimen name="movie_poster_height">246dp</dimen>
+    <dimen name="dimen_60">60dp</dimen>
     <dimen name="movie_poster_width">166dp</dimen>
+    <dimen name="movie_poster_height">246dp</dimen>
 </resources>
