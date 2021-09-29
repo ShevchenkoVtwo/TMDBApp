@@ -22,7 +22,7 @@
         tools:layout="@layout/fragment_movie_detail" >
         <argument
             android:name="movie"
-            app:argType="domain.models.Movie" />
+            app:argType="com.shevchenkovtwo.tmdbApp.domain.models.Movie" />
     </fragment>
 
     <fragment
